@@ -1,9 +1,11 @@
 var express = require('express');
 var session = require('express-session');
 var serverStatic = require('serve-static');
+var morgan = require('morgan');
 const sqlite3 = require('sqlite3').verbose();
+var fs = require('fs');
 const db = new sqlite3.Database('./chinook.db');
-
+// const appLogStream = fs.createWriteStream(path.join(__dirname, 'access.log'), { flags: 'a' })
 var getIP = require('ipware')().get_ip;
 var app = express();
 var path = require('path');
@@ -38,11 +40,20 @@ app.use(session({
 // 	});
 // });
 
+app.use(morgan('common', {
+    stream: fs.createWriteStream('./access.log', {flags: 'a'})
+}));
+var log = app.use(morgan("combined"));
 
 app.use(function(req, res, next) {
 	// Allows CORS requests:
 	res.header('Access-Control-Allow-Origin', '*');
 	next();
+});
+
+app.get('/test', (req, res) => {
+	console.log(log);
+	res.sendFile(path.join(__dirname + '/public/login.html'));
 });
 
 app.get('/login', (req, res) => {

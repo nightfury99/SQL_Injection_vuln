@@ -1,0 +1,6 @@
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:07 +0000] "GET /test?id=aaaazzzz HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:07 +0000] "GET /style.css HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:15 +0000] "GET /test?id=anything HTTP/1.1" 200 2857
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:15 +0000] "GET /style.css HTTP/1.1" 304 -
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:33 +0000] "GET /test?id=apa+jenis HTTP/1.1" 200 2857
+::ffff:127.0.0.1 - - [03/Feb/2021:11:08:33 +0000] "GET /style.css HTTP/1.1" 304 -
